@@ -1,18 +1,18 @@
 //아이디 중복체크 ajax 구현 함수
 function idCheck() {
-    var member_id = $('#mem_id').val();
+    var id = $('#mem_id').val();
     
-    if ((member_id < "0" || member_id > "9") && (member_id < "A" || member_id > "Z") && (member_id < "a" || member_id > "z")){ 
+    if ((id < "0" || id > "9") && (id < "A" || id > "Z") && (id < "a" || id > "z")){ 
         alert("한글 및 특수문자는 아이디로 사용하실 수 없습니다.");
         $('#mem_id').val('')
         $('#mem_id').focus()
     } else {
     	$.ajax({
-    		type:'post',
-    		url: "/Movie/IdCheck.movie",
-    		data: { member_id: member_id },
+    		type:"post",
+    		url: "idCheck.movie",
+    		data: { id: id },
     		success: function (data) {
-    			if (data == 0) {
+    			if (data != "null") {
     				$('.id_user').prop('checked', true);
     				$('.id_users').css({
     					'color': 'blue',

@@ -15,8 +15,14 @@ public class MainPageController {
 	public String mainPage(Model model, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession(false);
-		String member_id = (String) session.getAttribute("member_id");
-		System.out.println("session.member_id=>" + member_id);
+		String id = (String) session.getAttribute("id");
+		System.out.println("session.id=>" + id);
+		
+		return "mainPage";
+	}
+	
+	@RequestMapping(value = "user/mainPage", method = RequestMethod.POST)
+	public String mainPage() {
 		
 		return "mainPage";
 	}

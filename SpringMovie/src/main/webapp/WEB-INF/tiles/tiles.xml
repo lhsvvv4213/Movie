@@ -24,6 +24,15 @@
 		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
 	</definition>
 	
+	<!-- 아이디 체크 -->
+	<definition name="idCheck" template="/WEB-INF/views/user/idCheck.jsp" />
+	
+	<!-- 회원가입 성공 -->
+	<definition name="register_Success" template="/WEB-INF/views/user/register_Success.jsp">		
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>		
+	
 	<!-- 관리자메인 -->
 	<definition name="admin_Member" template="/WEB-INF/views/admin/template/layout.jsp">		
 		<put-attribute name="css" value="/WEB-INF/views/admin/script/css.jsp" />

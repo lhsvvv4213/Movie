@@ -23,11 +23,6 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-    
-    <bean id="MemberDAO" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.pot.dao.MemberDAO" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean>
 	
 	<mybatis-spring:scan base-package="com.pot.dao" />
 		
