@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- 메인페이지 -->
+	<definition name="mainPage" template="/WEB-INF/views/user/template/layout.jsp">		
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/user/mainPage.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>
+	
+	<!-- 약관동의 -->
+	<definition name="agreement" template="/WEB-INF/views/user/agreement.jsp">		
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>
+	
+	<!-- 회원가입 -->
+	<definition name="register" template="/WEB-INF/views/user/register.jsp">		
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>
+	
+	<!-- 관리자메인 -->
+	<definition name="admin_Member" template="/WEB-INF/views/admin/template/layout.jsp">		
+		<put-attribute name="css" value="/WEB-INF/views/admin/script/css.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/admin/template/header.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/admin/template/nav.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_Member.jsp" />		
+		<put-attribute name="js" value="/WEB-INF/views/admin/script/js.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/admin/script/script.jsp" />
+	</definition>
+
+</tiles-definitions>
