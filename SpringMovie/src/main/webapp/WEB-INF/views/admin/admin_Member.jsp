@@ -21,14 +21,14 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach var="memberList" items="${memberList}">
+                                        <c:forEach var="member" items="${memberList}">
    											<tr>
-   												<td>${memberList.name}</td>
-   												<td>${memberList.id}</td>
-   												<td>${memberList.email}</td>
-   												<td>${memberList.phone}</td>
-   												<td>${memberList.point}</td>
-   												<td>${memberList.grade}
+   												<td>${member.name}</td>
+   												<td>${member.id}</td>
+   												<td>${member.email}</td>
+   												<td>${member.phone}</td>
+   												<td>${member.point}</td>
+   												<td>${member.grade}
    													<div class="admin_authority_wrapp">
                                                   		<i class="fa fa-bars icon_right">
                                                         	<div class="admin_authority_inner">

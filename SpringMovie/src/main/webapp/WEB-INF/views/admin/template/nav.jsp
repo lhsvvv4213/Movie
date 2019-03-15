@@ -6,7 +6,7 @@
                 <h5 class="sidebar-header"></h5>
                 <ul class="nav nav-pills nav-stacked">
                     <li class="">
-                        <a href="/Movie/Admin_Member.movie" title="Dashboard">
+                        <a href="admin_Member.movie" title="Dashboard">
                             <i class="fa  fa-fw fa-tachometer"></i>회원 관리
                         </a>
                     </li>

@@ -19,12 +19,12 @@
 						<a class="tit_16" href="mainPage.movie">Movie</a>
 					</li>
 					<li class="large_contents">
-						<a class="tit_16" href="/Movie/Notice.movie">Notice</a>
+						<a class="tit_16" href="Notice.movie">Notice</a>
 					</li>
 					<li class="large_contents">
-						<a class="tit_16" href="/Movie/Event.movie">Event</a>
+						<a class="tit_16" href="Event.movie">Event</a>
 					</li>
-					<c:if test="${sessionScope.member_id == null}">
+					<c:if test="${sessionScope.id == null}">
 						<li class="large_contents">
 							<a class="tit_16 clickHand" onclick="login()">My Page</a>
 						</li>
@@ -32,14 +32,14 @@
 							<a class="tit_16" href="#login">Login</a>
 						</li>
 					</c:if>
-					<c:if test="${sessionScope.member_id != null}">
+					<c:if test="${sessionScope.id != null}">
 						<li class="large_contents">
 							<a class="tit_16 clickHand mypage">MyPage</a>
 						</li>						
 						<li class="large_contents">
-							<a class="tit_16" href="/Movie/Logout.movie">Logout</a>
+							<a class="tit_16" href="logout.movie">Logout</a>
 						</li>
-						<input type="hidden" value="${sessionScope.member_id}" id="mypage">
+						<input type="hidden" value="${sessionScope.id}" id="mypage">
 					</c:if>
 				</ul>
 				<a class="tit_24 login" href="#A.MOVIE">A.MOVIE</a>
@@ -47,26 +47,25 @@
 		</div>
 		<!-- 로그인 작업 시작 -->
 		<div class="form_wrapper">
-			<form method="post" action="/Movie/LoginPro.movie"
-				class="table_middle fld">
+			<form method="post" action="login.movie" class="table_middle fld">
 				<div class="table_cell_middle input_wh">
 					<h3 class="tit_28">Login</h3>
 					<div class="input_inner">
-						<input type="text" name="member_id" placeholder="아이디" required class="inp in_e_Dpink txt_14">
+						<input type="text" name="id" placeholder="아이디" required class="inp in_e_Dpink txt_14">
 					</div>
 					<div class="input_inner">
-						<input type="password" name="member_pw" placeholder="비밀번호" required class="inp in_e_Dpink txt_14">
+						<input type="password" name="pw" placeholder="비밀번호" required class="inp in_e_Dpink txt_14">
 					</div>
 					<div class="login_btn_inner">
 						<p class="clearfix">
 							<a class="txt_14" href="agreement.movie">회원가입</a>
 						</p>
 						<p>
-							<a class="txt_14" href="/Movie/Id_Lost.movie">아이디</a>
+							<a class="txt_14" href="id_Lost.movie">아이디</a>
 						</p>
 						<span class="txt_14">.</span>
 						<p>
-							<a class="txt_14" href="/Movie/Password_Lost.movie">비밀번호 찾기</a>
+							<a class="txt_14" href="password_Lost.movie">비밀번호 찾기</a>
 						</p>
 						<input type="submit" class="login_btn" value="Login">
 					</div>

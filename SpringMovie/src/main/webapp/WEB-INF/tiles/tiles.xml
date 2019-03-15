@@ -33,6 +33,8 @@
 		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
 	</definition>		
 	
+	<definition name="login" template="/WEB-INF/views/user/login.jsp" />
+	
 	<!-- 관리자메인 -->
 	<definition name="admin_Member" template="/WEB-INF/views/admin/template/layout.jsp">		
 		<put-attribute name="css" value="/WEB-INF/views/admin/script/css.jsp" />

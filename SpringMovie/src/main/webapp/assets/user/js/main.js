@@ -12,7 +12,7 @@ function idCheck() {
     		url: "idCheck.movie",
     		data: { id: id },
     		success: function (data) {
-    			if (data != "null") {
+    			if (data == 0) {
     				$('.id_user').prop('checked', true);
     				$('.id_users').css({
     					'color': 'blue',

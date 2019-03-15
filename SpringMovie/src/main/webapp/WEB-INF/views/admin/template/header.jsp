@@ -3,7 +3,7 @@
     	<header id="header">
            <!--logo start-->
             <div class="brand">
-                <a href="/Movie/Admin_Member.movie" class="logo">
+                <a href="admin_Member.movie" class="logo">
                     <!-- <i class="icon-layers"></i> -->
                     <span>a.MOVIE</span>&nbsp;ADMIN</a>
             </div>
@@ -19,7 +19,7 @@
                 <li class="dropdown profile hidden-xs">
                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
                         <span class="meta">
-                        <span class="text">${sessionScope.member_id}</span>
+                        <span class="text">${sessionScope.id}</span>
                         <span class="caret"></span>
                         </span>
                     </a>
@@ -29,7 +29,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a class="test" href="/Movie/Logout.movie">
+                            <a class="test" href="logout.movie">
                                 <span class="icon"><i class="fa fa-sign-out"></i>
                                 </span>Logout
                             </a>

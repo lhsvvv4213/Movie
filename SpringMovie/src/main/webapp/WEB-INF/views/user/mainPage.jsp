@@ -18,12 +18,12 @@
 										<li>
 											<a class="deteilBtn" href="#detail">상세보기</a>
 										</li>
-										<c:if test="${sessionScope.member_id == null}">
+										<c:if test="${sessionScope.id == null}">
 											<li>
 												<a class="clickHand" onclick="login()">예매하기</a>
 											</li>
 										</c:if>
-										<c:if test="${sessionScope.member_id != null}">
+										<c:if test="${sessionScope.id != null}">
 											<li>
 												<a class="reserveBtn" href="#reverse">예매하기</a>
 											</li>
@@ -94,7 +94,7 @@
 					<input type="hidden" name="time_screencode" id="time_screencode">
 					<input type="hidden" name="adult" id="adult1"> 
 					<input type="hidden" name="child" id="child"> 
-					<input type="hidden" name="reserve_id" value="${sessionScope.member_id}">
+					<input type="hidden" name="reserve_id" value="${sessionScope.id}">
 				</form>
 			</div>
 			<!-- 팝업 디자인 끝-->
@@ -114,10 +114,10 @@
 								<!-- 댓글 등록 -->
 								<div class="input">
 									<div class="btn_wrap">
-										<c:if test="${sessionScope.member_id == null}">
+										<c:if test="${sessionScope.id == null}">
 											<button class="comment_btn txt_16" value="등록" onclick="login()">등록</button>
 										</c:if>
-										<c:if test="${sessionScope.member_id != null}">
+										<c:if test="${sessionScope.id != null}">
 											<button id="saveBtn" class="comment_btn txt_16" value="등록">등록</button>
 										</c:if>
 									</div>
@@ -134,7 +134,7 @@
 									<div id="rateYo" class="star_rating" style="display: inline-block; width: 100px;"></div>									
 									<div id="movieDetailStarScoreTxt" class="star_score txt_14">평점을 입력해주세요.</div>
 									<input id="review_score" type="hidden"> 
-									<input type="hidden" id="review_id" value="${sessionScope.member_id}">
+									<input type="hidden" id="review_id" value="${sessionScope.id}">
 								</div>
 							</div>
 							<!-- 평점 시작 끝-->
