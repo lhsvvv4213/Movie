@@ -29,13 +29,13 @@ public class LoginController {
 		
 		String authority = memberDAO.login(map);
 		
-		if(authority == null) {
+		if (authority == null) {
 			authority = "-1";
-		} 
+		}
 		
-		model.addAttribute("id", id);	
 		model.addAttribute("authority", authority);
-		
+		model.addAttribute("id", id);	
+			
 		return "login";
 	}
 

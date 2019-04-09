@@ -133,19 +133,19 @@ $(document).ready(function () {
 	$('#mem_id').focus()		
 	$('#mem_name').focus()		
 	
-//mobile,pc 로그인 버튼 클릭하면 사이드 바 나오는 이벤트
-$('.large_contents:eq(4)').click(function () {
-    $('.form_wrapper').addClass('active');
-});
+	//mobile,pc 로그인 버튼 클릭하면 사이드 바 나오는 이벤트
+	$('.large_contents:eq(4)').click(function () {
+		$('.form_wrapper').addClass('active');
+	});
 
-//mobile,pc 윈도우 흰색 바탕 버튼 클릭하면 사이드 바 사라지는 이벤트 **$(e.target).hasClass()는 자식에게 다이랙트로 식별한다.**
-$(document).on('click', function(e) {
-    if (!$(e.target).hasClass('tit_16') && !$(e.target).hasClass('table_cell_middle') && !$(e.target).hasClass('table_middle') && !$(e.target).hasClass('form_wrapper active') && !$(e.target).hasClass('txt_14') && !$(e.target).hasClass('tit_28') && !$(e.target).hasClass('in_e_Dpink') && !$(e.target).hasClass('login_btn')) {
-        $('.form_wrapper').removeClass('active');
-    }
-});
+	//mobile,pc 윈도우 흰색 바탕 버튼 클릭하면 사이드 바 사라지는 이벤트 **$(e.target).hasClass()는 자식에게 다이랙트로 식별한다.**
+	$(document).on('click', function(e) {
+		if (!$(e.target).hasClass('tit_16') && !$(e.target).hasClass('table_cell_middle') && !$(e.target).hasClass('table_middle') && !$(e.target).hasClass('form_wrapper active') && !$(e.target).hasClass('txt_14') && !$(e.target).hasClass('tit_28') && !$(e.target).hasClass('in_e_Dpink') && !$(e.target).hasClass('login_btn')) {
+			$('.form_wrapper').removeClass('active');
+		}
+	});
 
-//index 페이지 가로 스크롤 작업
+	//index 페이지 가로 스크롤 작업
     $("#content-5").mCustomScrollbar({
         axis: "x",
         theme: "dark-thin",
@@ -153,7 +153,7 @@ $(document).on('click', function(e) {
         advanced: { autoExpandHorizontalScroll: true }
     });
     
-//index 페이지 작업
+    //index 페이지 작업
     $(".pc_list").on({
         mouseenter:function(){
             $(this).find('.table_cell_middle a').show(100);

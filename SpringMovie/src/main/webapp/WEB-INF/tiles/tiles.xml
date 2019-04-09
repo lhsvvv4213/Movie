@@ -8,6 +8,7 @@
 	<!-- 메인페이지 -->
 	<definition name="mainPage" template="/WEB-INF/views/user/template/layout.jsp">		
 		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/user/template/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/user/mainPage.jsp" />
 		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
 	</definition>
@@ -42,7 +43,31 @@
 		<put-attribute name="nav" value="/WEB-INF/views/admin/template/nav.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_Member.jsp" />		
 		<put-attribute name="js" value="/WEB-INF/views/admin/script/js.jsp" />
-		<put-attribute name="script" value="/WEB-INF/views/admin/script/script.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/admin/script/member_Script.jsp" />
 	</definition>
+	
+	<!-- 관리자로 변경 -->
+	<definition name="admin_MemberChange" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_MemberChange.jsp" />
+	</definition>
+	
+	<!-- 회원삭제 -->
+	<definition name="admin_MemberDelete" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_MemberDelete.jsp" />
+	</definition>
+	
+	<!-- 영화관리 -->
+	<definition name="admin_Movie" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_Movie.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/admin/script/movie_Script.jsp" />
+	</definition>
+	
+	<!-- 영화관 등록 -->
+	<definition name="admin_CinemaRegister" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_CinemaRegister.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/admin/script/cinema_Script.jsp" />
+	</definition>
+	
+	<definition name="admin_CinemaRegisterPro" template="/WEB-INF/views/admin/admin_CinemaRegisterPro.jsp" />
 
 </tiles-definitions>
