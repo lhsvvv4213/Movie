@@ -4,7 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 
-import com.pot.dto.CinemaImgVO;
+import com.pot.dto.CinemaVO;
+import com.pot.dto.MovieVO;
 
 @Component
 public class FileUtil {
@@ -36,8 +37,12 @@ public class FileUtil {
 		String uploadPath = request.getSession().getServletContext().getRealPath("/");
 		String attachPath = "assets/user/img/";
 		
-		if (obj instanceof CinemaImgVO) {
+		if (obj instanceof CinemaVO) {
 			attachPath += "cinemaPics/";
+		} else if (obj instanceof MovieVO) {
+			attachPath += "moviePics/";
+		} else {
+			attachPath += "eventPics/";
 		}
 		
 		return uploadPath + attachPath;

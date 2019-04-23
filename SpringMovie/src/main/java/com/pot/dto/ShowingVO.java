@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ShowingVO {
 
-	private String showingcode;
+	private int showingcode;
 	private String cinemaname;
 	private String moviename;
 	

@@ -10,7 +10,7 @@
 					<c:forEach var="movieList" items="${movieList}">
 						<li class="pc_list">
 							<a class="front" href="#movie"> 
-								<img class="img" src="${pageContext.request.contextPath}/main/img/moviePics&video/${movieList.movie_imageurl}" alt="${movieList.movie_moviename}">
+								<img class="img" src="../assets/user/img/moviePics/${movieList.newname}" alt="${movieList.moviename}">
 							</a>
 							<div class="bg">
 								<div class="hide_content table_middle">
@@ -31,9 +31,9 @@
 									</ul>
 								</div>
 							</div>
-							<div class="title" title="${movieList.movie_moviename}" style="display: none;">
-								<h3 class="movieName">${movieList.movie_moviename}</h3>
-								<p class="text" style="display: none;">${movieList.movie_content}</p>
+							<div class="title" title="${movieList.moviename}" style="display: none;">
+								<h3 class="movieName">${movieList.moviename}</h3>
+								<p class="text" style="display: none;">${movieList.content}</p>
 							</div></li>
 					</c:forEach>
 				</ul>

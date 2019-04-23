@@ -38,6 +38,14 @@ $(document).ready(function(){
            
     	memberId_submit(id, url)
       })
+      
+      $("#cinema").change(function() {
+    	  var cinema = $("#cinema option:selected").text()
+          cinema = cinema.replace(/\s/gi,'%20')
+                  
+          $("#screen").load('screenList.movie?screencode=' + cinema) 
+      })
+         
 });
 
 function memberId_submit(id, url) {
@@ -67,4 +75,8 @@ function change() {
 
 function deleteMember() {
 	$('#memberDelete').submit()
+}
+
+function deleteMovie() {
+	$('#movieDelete').submit()
 }

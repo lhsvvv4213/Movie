@@ -8,7 +8,7 @@ function idCheck() {
         $('#mem_id').focus()
     } else {
     	$.ajax({
-    		type:"post",
+    		type: "post",
     		url: "idCheck.movie",
     		data: { id: id },
     		success: function (data) {
@@ -270,8 +270,8 @@ $(document).ready(function () {
 		
 		moviename = moviename.replace(/\s/gi,'%20')
 				
-		$('#movieDetail').load('/Movie/Movie_Detail.movie?moviename=' + moviename)
-		$('#movieReviewList').load('/Movie/ReviewList.movie?review_moviename=' + moviename)
+		$('#movieDetail').load('movie_Detail.movie?moviename=' + moviename)
+		$('#movieReviewList').load('reviewList.movie?review_moviename=' + moviename)
     });
     
 	// 예매하기 클릭

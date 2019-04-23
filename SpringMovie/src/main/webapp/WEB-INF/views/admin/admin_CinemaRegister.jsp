@@ -21,20 +21,20 @@
                                     <div class="form-group inner">
                                         <label class="col-sm-3 control-label">영화관 이름</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="cinemaname" placeholder="영화관 이름">
+                                            <input type="text" class="form-control" name="cinemaname" placeholder="영화관 이름" required>
                                         </div>
                                     </div>
                                     <div class="form-group inner">
                                         <label class="col-sm-3 control-label">전화번호</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" name="tel" placeholder="1533-2200">
+                                            <input type="text" class="form-control" name="tel" placeholder="1533-2200" required>
                                         </div>
                                     </div>
                                     <div class="form-group inner">
                                         <label class="col-sm-3 control-label">지역선택</label>
                                         <div class="col-sm-6">
                                            <select class="form-control" name="local">
-                                           	   <option>지역을 선택해주세요.</option>
+                                           	   <option value="">지역을 선택해주세요.</option>
                                                <option>서울</option>
                                                <option>경기</option>
                                                <option>인천</option>
@@ -49,13 +49,13 @@
                                     <div class="form-group inner">
                                         <label class="col-sm-3 control-label">영화관 사진</label>
                                         <div class="col-sm-6">
-                                            <input type="file" class="form-control" name="upload" placeholder="영화관 사진">
+                                            <input type="file" class="form-control" name="upload" placeholder="영화관 사진" required>
                                         </div>
                                     </div>
                                     <div class="form-group inner">
                                         <label class="col-sm-3 control-label">영화관 주소</label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control text" name="addr" placeholder="영화관 주소">
+                                            <input type="text" class="form-control text" name="addr" placeholder="영화관 주소" required>
                                         </div>
                                     </div>
                                     <!--에디터 글 작성 여부 시작-->

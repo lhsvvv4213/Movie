@@ -1,16 +1,24 @@
 package com.pot.dao;
 
-import org.apache.ibatis.annotations.Insert;
+import java.util.List;
 
-import com.pot.dto.CinemaImgVO;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
 import com.pot.dto.CinemaVO;
 
 public interface CinemaDAO {
-
-	@Insert("insert into CINEMA values(#{cinemaname},#{tel},#{addr},#{local},#{content})")
+	
+	// 영화관 검색
+	@Select("select cinemaname from CINEMA where cinemaname=#{cinemaname}")
+	public String cinemaSearch(String cinemaname);
+	
+	// 영화관 등록
+	@Insert("insert into CINEMA values(#{cinemaname},#{tel},#{addr},#{local},#{content},#{oldname},#{newname},#{url})")
 	public int cinemaInsert(CinemaVO cinemaVO);
 	
-	@Insert("insert into CINEMAIMG values(#{cinemaname},#{oldname},#{newname},#{url})")
-	public int cinemaImgInsert(CinemaImgVO cinemaImgVO);
+	// 영화관 리스트
+	@Select("select cinemaname from CINEMA order by cinemaname")
+	public List<CinemaVO> cinemaList();
 	
 }

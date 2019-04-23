@@ -35,7 +35,7 @@
                                                     <i class="fa fa-bars icon_right">
                                                         <div class="admin_authority_inner">
                                                             <div class="admin_authority">
-                                                            	<a href="/Movie/Admin_MovieDelete.movie?showing_showingcode=${movieJoin.showing_showingcode}">영화 삭제</a>
+                                                            	<a href="admin_MovieDelete.movie?showingcode=${movieJoin.showingcode}">영화 삭제</a>
                                                             </div>
                                                         </div>
                                                     </i>

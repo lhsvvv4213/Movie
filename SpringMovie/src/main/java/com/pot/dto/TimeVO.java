@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 public class TimeVO {
 
-	private String timecode;
+	private int timecode;
 	private String startdate;
 	private String starttime;
 	private String endtime;
-	private String showingcode;
+	private int showingcode;
 	private String screencode;
 	
 }

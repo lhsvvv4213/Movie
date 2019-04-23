@@ -56,8 +56,10 @@ public class RegisterController {
 		
 		if (check == 1) {
 			Map<String, Object> map = new HashMap<String, Object>();
+			
 			map.put("id", memberVO.getId());
 			map.put("pw", memberVO.getPw());
+			
 			check = memberDAO.loginInsert(map);
 			System.out.println("회원가입(check)=>" + check);
 		}

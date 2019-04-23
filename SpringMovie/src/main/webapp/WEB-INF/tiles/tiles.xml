@@ -36,6 +36,9 @@
 	
 	<definition name="login" template="/WEB-INF/views/user/login.jsp" />
 	
+	<!-- 영화 상세정보 -->
+	<definition name="movie_Detail" template="/WEB-INF/views/user/movie_Detail.jsp" />		
+	
 	<!-- 관리자메인 -->
 	<definition name="admin_Member" template="/WEB-INF/views/admin/template/layout.jsp">		
 		<put-attribute name="css" value="/WEB-INF/views/admin/script/css.jsp" />
@@ -62,12 +65,65 @@
 		<put-attribute name="script" value="/WEB-INF/views/admin/script/movie_Script.jsp" />
 	</definition>
 	
+	<!-- 영화 삭제 -->
+	<definition name="admin_MovieDelete" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_MovieDelete.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/admin/script/movie_Script.jsp" />
+	</definition>
+	
 	<!-- 영화관 등록 -->
 	<definition name="admin_CinemaRegister" extends="admin_Member">
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_CinemaRegister.jsp" />
 		<put-attribute name="script" value="/WEB-INF/views/admin/script/cinema_Script.jsp" />
 	</definition>
+		
+	<!-- 영화 등록 -->
+	<definition name="admin_MovieRegister" extends="admin_CinemaRegister">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_MovieRegister.jsp" />
+	</definition>
 	
-	<definition name="admin_CinemaRegisterPro" template="/WEB-INF/views/admin/admin_CinemaRegisterPro.jsp" />
+	<!-- 영화시간 등록 -->
+	<definition name="admin_TimeRegister" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_TimeRegister.jsp" />
+		<put-attribute name="script" value="" />
+	</definition>
+	
+	<!-- 상영관 리스트 -->
+	<definition name="screenList" template="/WEB-INF/views/admin/screenList.jsp" />
+	
+	<!-- 이벤트 관리 -->
+	<definition name="admin_Event" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_Event.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/admin/script/event_Script.jsp" />
+	</definition>
+	
+	<!-- 이벤트 삭제 -->
+	<definition name="admin_EventDelete" extends="admin_Event">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_EventDelete.jsp" />
+	</definition>
+	
+	<!-- 이벤트등록 -->
+	<definition name="admin_EventRegister" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_EventRegister.jsp" />
+		<put-attribute name="script" value="" />
+	</definition>
+	
+	<!-- 공지사항 관리 -->
+	<definition name="admin_Notice" extends="admin_Member">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_Notice.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/admin/script/notice_Script.jsp" />
+	</definition>
+	
+	<!-- 공지사항 삭제 -->
+	<definition name="admin_NoticeDelete" extends="admin_Notice">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_NoticeDelete.jsp" />
+	</definition>
+	
+	<!-- 공지사항 등록 -->
+	<definition name="admin_NoticeRegister" extends="admin_CinemaRegister">
+		<put-attribute name="body" value="/WEB-INF/views/admin/admin_NoticeRegister.jsp" />
+	</definition>
+	
+	<definition name="admin_Register" template="/WEB-INF/views/admin/admin_Register.jsp" />
 
 </tiles-definitions>

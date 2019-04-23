@@ -15,7 +15,7 @@ import com.pot.dao.MemberDAO;
 import com.pot.dto.MemberVO;
 
 @Controller
-public class AdminMemberController {
+public class MemberController {
 	
 	@Autowired
 	private MemberDAO memberDAO;

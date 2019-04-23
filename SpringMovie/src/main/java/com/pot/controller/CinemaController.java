@@ -1,6 +1,7 @@
 package com.pot.controller;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,12 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.pot.dao.CinemaDAO;
-import com.pot.dto.CinemaImgVO;
 import com.pot.dto.CinemaVO;
 import com.pot.util.FileUtil;
 
 @Controller
-public class AdminCinemaController {
+public class CinemaController {
 	
 	@Autowired
 	private CinemaDAO cinemaDAO;
@@ -28,36 +28,35 @@ public class AdminCinemaController {
 	}
 	
 	@RequestMapping(value = "/admin/admin_CinemaRegisterPro", method = RequestMethod.POST)
-	public String adminCinemaRegisterPro(Model model, HttpServletRequest request, CinemaVO cinemaVO, CinemaImgVO cinemaImgVO) {
+	public String adminCinemaRegisterPro(Model model, HttpServletRequest request, CinemaVO cinemaVO) throws Exception {
 		
-		int check = 0;
-		
-		String oldName = cinemaImgVO.getUpload().getOriginalFilename();
-		String newName = FileUtil.rename(oldName);
-		String url = FileUtil.uploadFile(newName, request, cinemaImgVO);
-		
-		cinemaVO.setContent(cinemaVO.getContent().trim());
-		cinemaImgVO.setOldname(oldName);
-		cinemaImgVO.setNewname(newName);
-		cinemaImgVO.setUrl(url);
-		
-		try {
-			check = cinemaDAO.cinemaInsert(cinemaVO);
-			
-			if (check == 1) {
-				check = cinemaDAO.cinemaImgInsert(cinemaImgVO);
-				cinemaImgVO.getUpload().transferTo(new File(url));	
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		if (cinemaVO.getLocal().equals("") || cinemaVO.getContent().trim().equals("")) {
+			model.addAttribute("search", "exist");
+
+			return "admin_Register";
 		}
 		
-		if (check == 1) {
+		String oldName = cinemaVO.getUpload().getOriginalFilename();
+		String newName = FileUtil.rename(oldName);
+		String url = FileUtil.uploadFile(newName, request, cinemaVO);
+		
+		cinemaVO.setContent(cinemaVO.getContent().trim());
+		cinemaVO.setOldname(oldName);
+		cinemaVO.setNewname(newName);
+		cinemaVO.setUrl(url);
+		
+		String search = cinemaDAO.cinemaSearch(cinemaVO.getCinemaname());
+		
+		if (search == null) {
+			cinemaDAO.cinemaInsert(cinemaVO);
+			cinemaVO.getUpload().transferTo(new File(url));
+			
 			return "redirect:admin_CinemaRegister.movie";
 		} else {
-			model.addAttribute("check", check);
-			return "admin_CinemaRegisterPro";
-		}		
+			model.addAttribute("search", search);
+			
+			return "admin_Register";
+		}	
 	}
 	
 }
