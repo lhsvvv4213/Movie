@@ -11,10 +11,10 @@
 						<a class="tit_16" href="mainPage.movie">Movie</a>
 					</li>
 					<li class="large_contents">
-						<a class="tit_16" href="Notice.movie">Notice</a>
+						<a class="tit_16" href="notice.movie">Notice</a>
 					</li>
 					<li class="large_contents">
-						<a class="tit_16" href="Event.movie">Event</a>
+						<a class="tit_16" href="event.movie">Event</a>
 					</li>
 					<c:if test="${sessionScope.id == null}">
 						<li class="large_contents">

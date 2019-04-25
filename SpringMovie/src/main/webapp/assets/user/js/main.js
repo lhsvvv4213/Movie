@@ -70,7 +70,7 @@ function memberId_submit(id, url) {
     var hiddenField = document.createElement("input");
 
     hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", "member_id");
+    hiddenField.setAttribute("name", "id");
     hiddenField.setAttribute("value", id)
 
     form.appendChild(hiddenField);
@@ -90,31 +90,31 @@ function cancel(id, date, time, screen, count, url) {
     var hiddenField = document.createElement("input");
 
     hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", "reserve_id");
+    hiddenField.setAttribute("name", "id");
     hiddenField.setAttribute("value", id)
     
     var hiddenField1 = document.createElement("input");
 
     hiddenField1.setAttribute("type", "hidden");
-    hiddenField1.setAttribute("name", "time_startdate");
+    hiddenField1.setAttribute("name", "startdate");
     hiddenField1.setAttribute("value", date)
     
     var hiddenField2 = document.createElement("input");
 
     hiddenField2.setAttribute("type", "hidden");
-    hiddenField2.setAttribute("name", "time_starttime");
+    hiddenField2.setAttribute("name", "starttime");
     hiddenField2.setAttribute("value", time)
     
     var hiddenField3 = document.createElement("input");
 
     hiddenField3.setAttribute("type", "hidden");
-    hiddenField3.setAttribute("name", "time_screencode");
+    hiddenField3.setAttribute("name", "screencode");
     hiddenField3.setAttribute("value", screen)
     
     var hiddenField4 = document.createElement("input");
 
     hiddenField4.setAttribute("type", "hidden");
-    hiddenField4.setAttribute("name", "reserve_seatcount");
+    hiddenField4.setAttribute("name", "seatcount");
     hiddenField4.setAttribute("value", count)
 
     form.appendChild(hiddenField);
@@ -371,10 +371,10 @@ $(document).ready(function () {
 	// 마이페이지 이동
 	$('.mypage').click(function() {
 		
-		var member_id = $('#mypage').val()
-		var url = '/Movie/Mypage.movie'
+		var id = $('#mypage').val()
+		var url = 'mypage.movie'
 		
-		memberId_submit(member_id, url)
+		memberId_submit(id, url)
 	})
 	
 	var current = new Date()

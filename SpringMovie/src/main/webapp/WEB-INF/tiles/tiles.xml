@@ -11,6 +11,17 @@
 		<put-attribute name="header" value="/WEB-INF/views/user/template/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/user/mainPage.jsp" />
 		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+		<put-attribute name="script" value="" />
+	</definition>
+	
+	<!-- 공지사항 -->
+	
+	<!-- 이벤트 -->
+	
+	<!-- 마이페이지 -->
+	<definition name="mypage" extends="mainPage">
+		<put-attribute name="body" value="/WEB-INF/views/user/mypage.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/user/script/mypage_Script.jsp" />
 	</definition>
 	
 	<!-- 약관동의 -->
@@ -20,20 +31,15 @@
 	</definition>
 	
 	<!-- 회원가입 -->
-	<definition name="register" template="/WEB-INF/views/user/register.jsp">		
-		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
-		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
-	</definition>
+	<definition name="register" extends="agreement" />
 	
 	<!-- 아이디 체크 -->
 	<definition name="idCheck" template="/WEB-INF/views/user/idCheck.jsp" />
 	
 	<!-- 회원가입 성공 -->
-	<definition name="register_Success" template="/WEB-INF/views/user/register_Success.jsp">		
-		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
-		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
-	</definition>		
+	<definition name="register_Success" extends="agreement" />				
 	
+	<!-- 로그인 -->
 	<definition name="login" template="/WEB-INF/views/user/login.jsp" />
 	
 	<!-- 영화 상세정보 -->

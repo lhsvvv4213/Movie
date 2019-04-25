@@ -1,7 +1,6 @@
 package com.pot.controller;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.File; 
 
 import javax.servlet.http.HttpServletRequest;
 
