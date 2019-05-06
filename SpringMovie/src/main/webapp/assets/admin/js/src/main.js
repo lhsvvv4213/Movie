@@ -15,21 +15,21 @@ $(document).ready(function(){
 		}
 	});
 	
-	 $(".date").datepicker({
-	        dateFormat: "yy-mm-dd"
-	 }).datepicker("setDate", "0");
+	$(".date").datepicker({
+		dateFormat: "yy-mm-dd"
+	}).datepicker("setDate", "0");
 	 
-	 $(".updateBtn").click(function() {
-       	var checkBtn = $(this);
+	$(".updateBtn").click(function() {
+		var checkBtn = $(this);
        	var tr = checkBtn.closest('tr');
         var td = tr.children();
         var id = td.eq(1).text();
         var url = "admin_MemberChange.movie"
            
     	memberId_submit(id, url)
-      })
+	})
        
-     $(".deleteBtn").click(function() {
+	$(".deleteBtn").click(function() {
        	var checkBtn = $(this);
         var tr = checkBtn.closest('tr');
         var td = tr.children();
@@ -37,14 +37,116 @@ $(document).ready(function(){
     	var url = "admin_MemberDelete.movie"
            
     	memberId_submit(id, url)
-      })
-      
-      $("#cinema").change(function() {
-    	  var cinema = $("#cinema option:selected").text()
-          cinema = cinema.replace(/\s/gi,'%20')
+	})
+	
+	// 영화관등록
+	$("#cinema").click(function() {
+		
+		var file = $("input:file").val()
+		var content = CKEDITOR.instances.editor1.getData()				
+		var formData = new FormData($("form")[0]);
+		formData.set("content", content)
+		
+		for (var value of formData.values()) {		
+			if (!value || !file) {
+				return
+			}
+		}
+		
+		$.ajax({
+			type : "POST",
+			url : "admin_CinemaRegisterPro.movie",
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(data) {
+				if (!data) {
+					location.reload()
+				} else {
+					alert("작성 내용을 확인해주세요.")
+				}
+			}
+		});	
+	})
+	
+	// 영화등록
+	$("#movie").click(function() {
+		
+		var file = $("input:file").val()
+		var content = CKEDITOR.instances.editor1.getData()				
+		var formData = new FormData($("form")[0]);
+		formData.set("content", content)
+		
+		for (var value of formData.values()) {	
+			if (!value || !file) {
+				return
+			}
+		}
+		
+		$.ajax({
+			type : "POST",
+			url : "admin_MovieRegisterPro.movie",
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(data) {
+				if (!data) {
+					location.reload()
+				} else {
+					alert("작성 내용을 확인해주세요.")
+				}
+			}
+		});				
+	})
+    
+	// 영화관 변경시 상영관 변경
+	$("#cinema").change(function() {
+		var cinema = $("#cinema option:selected").text()
+		cinema = cinema.replace(/\s/gi,'%20')
                   
-          $("#screen").load('screenList.movie?screencode=' + cinema) 
-      })
+		$("#screen").load('screenList.movie?screencode=' + cinema) 
+	})
+	
+	// 영화시간 등록
+	$("#time").click(function() {
+						
+		var formData = new FormData($("form")[0]);
+		
+		for (var value of formData.values()) {
+			if (!value) {
+				return
+			}
+		}
+
+		$.ajax({
+			type : "POST",
+			url : "admin_TimeRegisterPro.movie",
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(data) {
+				if (!data) {
+					location.reload()
+				} else {
+					alert("작성 내용을 확인해주세요.")
+				}
+			}
+		});		
+	})
+	
+	// 공지사항 등록
+	$("#notice").click(function() {
+		
+		var content = CKEDITOR.instances.editor1.getData()				
+		var formData = new FormData($("form")[0]);
+		formData.set("content", content)
+		
+		for (var value of formData.values()) {	
+			if (!value) {
+				return false
+			}
+		}
+	})
          
 });
 
@@ -80,3 +182,4 @@ function deleteMember() {
 function deleteMovie() {
 	$('#movieDelete').submit()
 }
+

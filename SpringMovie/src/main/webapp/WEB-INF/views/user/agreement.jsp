@@ -340,7 +340,7 @@
             </form>
         </div>
     </div>
-<tiles:insertAttribute name="js" />
+	<tiles:insertAttribute name="js" />
 <script type="text/javascript">
         $('.agreement_btn').click(function (e) {
             var result = $(this).hasClass('btn_active');

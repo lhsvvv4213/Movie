@@ -18,7 +18,7 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <form class="form-horizontal form-border" id="form" method="post" action="admin_TimeRegisterPro.movie">
+                                <form class="form-horizontal form-border">
                                     <div class="form-group inner">
                                         <label class="col-sm-3 control-label">상영 영화관</label>
                                         <div class="col-sm-6">
@@ -69,7 +69,7 @@
                                     </div>
                                     <div class="form-group inner_top">
                                         <div class="col-sm-offset-3 col-sm-6">
-                                            <button type="submit" class="btn btn-primary">저장</button>
+                                            <button type="button" class="btn btn-primary" id="time">저장</button>
                                             <button onclick="history.back(); return false" class="btn btn-primary">취소</button>
                                         </div>
                                     </div>

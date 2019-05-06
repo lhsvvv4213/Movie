@@ -1,5 +1,7 @@
 package com.pot.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -14,5 +16,9 @@ public interface ShowingDAO {
 	// 상영코드 검색
 	@Select("select showingcode from SHOWING where cinemaname=#{cinemaname} and moviename=#{moviename}")
 	public String showingCodeSearch(ShowingVO showingVO);
+	
+	// 예매할 영화관 리스트
+	@Select("select cinemaname from SHOWING where moviename=#{moviename} order by cinemaname")
+	public List<ShowingVO> cinemaList(String moviename); 
 	
 }

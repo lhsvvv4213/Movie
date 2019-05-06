@@ -1,6 +1,8 @@
 package com.pot.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pot.dao.MemberDAO;
 import com.pot.dto.MemberVO;
+import com.pot.util.MailTest;
 
 @Controller
 public class MemberController {
@@ -80,6 +84,49 @@ public class MemberController {
 		}
 		
 		return "redirect:admin_Member.movie";
+	}
+	
+	@RequestMapping(value = "/user/id_Lost", method = RequestMethod.GET)
+	public String idLost() {
+		
+		return "id_Lost";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/user/id_LostPro", method = RequestMethod.POST)
+	public String idLostPro(Model model, @RequestParam String name, @RequestParam String email, @RequestParam String phone) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("name", name);
+		map.put("email", email);
+		map.put("phone", phone);
+		
+		String id = memberDAO.idSearch(map);
+		
+		return id;
+	}
+	
+	@RequestMapping(value = "/user/password_Lost", method = RequestMethod.GET)
+	public String passwordLost() {
+		
+		return "password_Lost";
+	}
+	
+	@ResponseBody 
+	@RequestMapping(value = "/user/password_LostPro", method = RequestMethod.POST)
+	public String passwordLostPro(Model model, @RequestParam String id, @RequestParam String email) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("email", email);
+		
+		String pw = memberDAO.passwordSearch(map);
+				
+		if (pw != null) {
+			new MailTest(pw, email);
+		}
+		
+		return pw;
 	}
 	
 }

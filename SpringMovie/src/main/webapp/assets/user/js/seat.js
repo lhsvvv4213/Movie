@@ -14,11 +14,11 @@
  
 	    if (reserveCnt == 0) {
 	        alert('인원수부터 선택해주세요');;
-	        $(this).attr('src', './main/img/seat/off.svg');     	 
+	        $(this).attr('src', '../assets/user/img/seat/off.svg');     	 
 	        $('.checkbox').attr('checked', false);
 	        return;
 	    } else if(checkCnt > reserveCnt) {
-	    	$(this).attr('src', './main/img/seat/off.svg');
+	    	$(this).attr('src', '../assets/user/img/seat/off.svg');
 	        $('.checkbox:eq('+index+')').attr('checked', false);
 	    }
 	       	              
@@ -75,7 +75,7 @@
         	if(confirm('선택한 좌석을 취소하시겠습니까?')) {
         		for (var i = 0; i < len; i++) {
                 	if (check[i].checked == true) {
-                		$('img[alt=spaceSeat]:eq('+i+')').attr('src', './main/img/seat/off.svg');
+                		$('img[alt=spaceSeat]:eq('+i+')').attr('src', '../assets/user/img/seat/off.svg');
                 	    $('.checkbox:eq('+i+')').attr('checked', false);
                 	}
                 	$('.reserveCnt').eq(0).text(0);

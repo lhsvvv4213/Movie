@@ -17,7 +17,7 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-                                <form class="form-horizontal form-border" id="form" method="post" action="admin_EventRegisterPro.movie" enctype="multipart/form-data">
+                                <form class="form-horizontal form-border" method="post" action="admin_EventRegisterPro.movie" enctype="multipart/form-data">
                                     <div class="form-group inner">
                                         <label class="col-sm-3 control-label">이벤트 제목</label>
                                         <div class="col-sm-6">

@@ -8,9 +8,11 @@
 <tiles:insertAttribute name="css" />
 </head>
 <body>
-	<tiles:insertAttribute name="header" />
-	<tiles:insertAttribute name="body" />
-<tiles:insertAttribute name="js" />
-<tiles:insertAttribute name="script" />
+	<div class="bg">
+		<tiles:insertAttribute name="header" />
+		<tiles:insertAttribute name="body" />
+	</div>
+	<tiles:insertAttribute name="js" />
+	<tiles:insertAttribute name="script" />
 </body>
 </html>

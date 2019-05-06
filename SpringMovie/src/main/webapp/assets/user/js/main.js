@@ -12,7 +12,7 @@ function idCheck() {
     		url: "idCheck.movie",
     		data: { id: id },
     		success: function (data) {
-    			if (data == 0) {
+    			if (!data) {
     				$('.id_user').prop('checked', true);
     				$('.id_users').css({
     					'color': 'blue',
@@ -80,63 +80,41 @@ function memberId_submit(id, url) {
     form.submit();
 }
 
-function cancel(id, date, time, screen, count, url) {
-    var form = document.createElement("form");
-
-    form.setAttribute("charset", "UTF-8");
-    form.setAttribute("method", "Post");
-    form.setAttribute("action", url);
-
-    var hiddenField = document.createElement("input");
-
-    hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", "id");
-    hiddenField.setAttribute("value", id)
-    
-    var hiddenField1 = document.createElement("input");
-
-    hiddenField1.setAttribute("type", "hidden");
-    hiddenField1.setAttribute("name", "startdate");
-    hiddenField1.setAttribute("value", date)
-    
-    var hiddenField2 = document.createElement("input");
-
-    hiddenField2.setAttribute("type", "hidden");
-    hiddenField2.setAttribute("name", "starttime");
-    hiddenField2.setAttribute("value", time)
-    
-    var hiddenField3 = document.createElement("input");
-
-    hiddenField3.setAttribute("type", "hidden");
-    hiddenField3.setAttribute("name", "screencode");
-    hiddenField3.setAttribute("value", screen)
-    
-    var hiddenField4 = document.createElement("input");
-
-    hiddenField4.setAttribute("type", "hidden");
-    hiddenField4.setAttribute("name", "seatcount");
-    hiddenField4.setAttribute("value", count)
-
-    form.appendChild(hiddenField);
-    form.appendChild(hiddenField1);
-    form.appendChild(hiddenField2);
-    form.appendChild(hiddenField3);
-    form.appendChild(hiddenField4);
-
-    document.body.appendChild(form);
-
-    form.submit();
-}
-
 $(document).ready(function () {
-	
-	$('#mem_id').focus()		
-	$('#mem_name').focus()		
-	
+		
 	//mobile,pc 로그인 버튼 클릭하면 사이드 바 나오는 이벤트
 	$('.large_contents:eq(4)').click(function () {
 		$('.form_wrapper').addClass('active');
 	});
+	
+	// 로그인
+	$(".login_btn").click(function() {
+		
+		var formData = new FormData($("form")[0]);
+		
+		for (var value of formData.values()) {
+			if (!value) {
+				return
+			}
+		}
+
+		$.ajax({
+			type : "POST",
+			url : "login.movie",
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(data) {
+				if (!data) {
+					alert("아이디 및 비밀번호를 확인해주세요.")
+				} else if(data == 1) {
+					location.reload()
+				} else {
+					location.href = "../admin/admin_Member.movie"
+				}
+			}
+		});
+	})
 
 	//mobile,pc 윈도우 흰색 바탕 버튼 클릭하면 사이드 바 사라지는 이벤트 **$(e.target).hasClass()는 자식에게 다이랙트로 식별한다.**
 	$(document).on('click', function(e) {
@@ -179,15 +157,100 @@ $(document).ready(function () {
         }
     });
     
-    // jquery ui 현재 날짜 찍어주기
-    $("#datepicker").datepicker({
-        firstDay: 1,
-        dateFormat: "yy-mm-dd",
-        onSelect:function(){
-           $('.menu_inner li').empty()
-           $(".pop_up_post_inner").css('height','440px');
-        } 
-     }).datepicker("setDate", "0");
+	$('#mem_id').focus()		
+	$('#mem_name').focus()		
+	
+	// 아이디 찾기
+	$("#idSearch").click(function() {
+
+		var formData = new FormData($("form")[0]);
+
+		$.ajax({
+			type : "POST",
+			url : "id_LostPro.movie",
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(data) {
+				if (!data) {
+					alert("작성내용을 확인해주세요.")
+				} else {
+					alert("회원님의 아이디는 " + data + "입니다")
+					$("input").not($("input[type=button]")).val("") 
+					$("#mem_name").focus()
+				}
+			}
+		});
+	});
+	
+	// 비밀번호 찾기
+	$("#passwordSearch").click(function() {
+
+		var formData = new FormData($("form")[0]);
+
+		$.ajax({
+			type : "POST",
+			url : "password_LostPro.movie",
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(data) {
+				if (!data) {
+					alert("작성내용을 확인해주세요.")
+				} else {
+					alert('이메일로 발송되었습니다.')
+					location.href = "mainPage.movie"
+				}
+			}
+		});
+	});
+	
+    // 상세보기 클릭
+    $('.deteilBtn').on('click', function () { 
+        $('.derail_pop_up_wrap').fadeIn();
+        
+		var button = $(this)
+		var moviename = button.closest('.bg').next().find('.movieName').text()
+		
+		moviename = moviename.replace(/\s/gi,'%20')
+				
+		$('#movieDetail').load('movie_Detail.movie?moviename=' + moviename)
+		$('#movieReviewList').load('reviewList.movie?moviename=' + moviename)
+		$('#review_content').focus()
+		$('#review_content').val("")
+    });
+    
+    // 댓글 기능
+    $('#saveBtn').click(function (){
+    	
+        var content = $.trim($('#review_content').val());
+        
+        if (!content || content.replace(/\s/gi,"") == ""){
+            alert("댓글을 입력하세요!");
+            $('#review_content').focus()
+            return;
+        } else {        
+        	var score = $('#review_score').val()
+        	var id = $('#review_id').val()
+        	var moviename = $('#reserveDetaileName').text()
+
+        	$.ajax({
+        		type : 'post',
+        		url : 'review.movie',
+        		data : {id : id, score : score, content : content, moviename: moviename},
+				success : function(data) {
+					if (data) {
+						alert('리뷰는 한번만 남길 수 있습니다.')
+						$('#review_content').val('').focus()
+					} else {
+						$('#review_content').val('').focus()
+						moviename = moviename.replace(/\s/gi,'%20')
+						$('#movieReviewList').load('reviewList.movie?moviename=' + moviename)
+					}
+				}
+        	})
+        }
+    });
     
     // 상세페이지 별점 측정 객체를 생성하여 변수에 담는다. $rateYo 
     var $rateYo = $("#rateYo").rateYo({
@@ -227,52 +290,9 @@ $(document).ready(function () {
                 $("#review_score").val(val);
             }
     });
+    
     var rating = $rateYo.rateYo("rating");
     $('#review_score').val(rating);
-
-
-    // 댓글 기능
-    $('#saveBtn').click(function (){
-        var content = $('#review_content').val();
-        if(content == ""){
-            alert("댓글을 입력하세요!");
-            return;
-        } else {        
-		var review_score = $('#review_score').val()
-		var review_content = $('#review_content').val()
-		var review_id = $('#review_id').val()
-		var review_moviename = $('#reserveDetaileName').text()
-
-		$.ajax({
-			type : 'post',
-			url : '/Movie/Review.movie',
-			data : {review_id : review_id, review_score : review_score, review_content : review_content, review_moviename: review_moviename},
-			success : function(data) {
-				if (data == 0) {
-					alert('리뷰는 한번만 남길 수 있습니다.')
-					$('#review_content').val('').focus()
-				} else {
-					$('#review_content').val('').focus()
-					review_moviename = review_moviename.replace(/\s/gi,'%20')
-					$('#movieReviewList').load('/Movie/ReviewList.movie?review_moviename=' + review_moviename)
-				}
-			}
-		})
-        }
-    });
-
-    // 상세보기 클릭
-    $('.deteilBtn').on('click', function () { 
-        $('.derail_pop_up_wrap').fadeIn();
-        
-		var button = $(this)
-		var moviename = button.closest('.bg').next().find('.movieName').text()
-		
-		moviename = moviename.replace(/\s/gi,'%20')
-				
-		$('#movieDetail').load('movie_Detail.movie?moviename=' + moviename)
-		$('#movieReviewList').load('reviewList.movie?review_moviename=' + moviename)
-    });
     
 	// 예매하기 클릭
 	$('.reserveBtn').click(function() {
@@ -289,9 +309,18 @@ $(document).ready(function () {
 		
 		moviename = moviename.replace(/\s/gi,'%20')
 		
-		$('#cinema').load('/Movie/Reserve_Cinema.movie?moviename=' + moviename)
-
+		$('#cinema').load('reserve_Cinema.movie?moviename=' + moviename)
 	})
+	
+	// jquery ui 현재 날짜 찍어주기
+    $("#datepicker").datepicker({
+        firstDay: 1,
+        dateFormat: "yy-mm-dd",
+        onSelect:function(){
+           $('.menu_inner li').empty()
+           $(".pop_up_post_inner").css('height','440px');
+        } 
+    }).datepicker("setDate", "0");
 	
 	// 시간정보 가져오기
 	$('#time').click(function() {
@@ -302,14 +331,19 @@ $(document).ready(function () {
 		cinema = cinema.replace(/\s/gi,'%20') 
 		movie = movie.replace(/\s/gi,'%20') 
 		
-		$('#timeList').load('/Movie/Reserve_Time.movie?cinemaname=' + cinema + '&moviename=' + movie + '&opendate=' + date)
+		$('#timeList').load('reserve_Time.movie?cinemaname=' + cinema + '&moviename=' + movie + '&startdate=' + date)
 		
 	});
 	
 	// 영화관 변경시 리셋
 	$('#cinema').change(function(){
+		
         $('.pop_up_time').hide();
-        $('.' + $(this).val()).show();
+        //$('.' + $(this).val()).show(); 
+		/*if (!$(this).val()) {
+			$('.screen_wrapper').hide()
+			$(this).removeClass('active')
+		}*/
     });
 	 
 	// 예매완료
@@ -346,24 +380,26 @@ $(document).ready(function () {
 		var button = $(this)
 		var eventcode = button.closest('.event_list').next().val()
 		
-		$('#eventDetail').load('/Movie/Event_Detail.movie?eventcode=' + eventcode)
+		$('#eventDetail').load('event_Detail.movie?eventcode=' + eventcode)
     });
 	
 	// 이벤트 더보기
 	$('.moder_btn .moder').click(function(){
+		
+		var count = $(".event_list_wrap li").length
     	
         $.ajax({
-            url: "/Movie/Event_More.movie",        
+            url: "event_More.movie?count=" + count,        
             success: function (result) {
                 $('.event_list_wrap').append(result);
                 
-                 // 이벤트 페이지 무한 스크롤
+               /*  // 이벤트 페이지 무한 스크롤
                 $('.moder').hide("slow", function(){
                 	$(window).scroll(function (e) {
                 		var scrollHeight = $(window).scrollTop() + $(window).height(); //브라우저의 뷰포트의 높이를 돌려줍니다.(가변값)
                 		var documentHeight = $(document).height(); //HTML 문서의 높이를 반환합니다.(고정값)          
                 	}); 
-                });
+                });*/
             }
         });
 	});
@@ -372,11 +408,12 @@ $(document).ready(function () {
 	$('.mypage').click(function() {
 		
 		var id = $('#mypage').val()
-		var url = 'mypage.movie'
+		var url = 'myPage.movie'
 		
 		memberId_submit(id, url)
 	})
 	
+	// 예매취소
 	var current = new Date()
 	
 	$('.Ticketing_list').find('.year').each(function(i) {
@@ -398,9 +435,15 @@ $(document).ready(function () {
      	        var time = button.closest('.Ticketing_list').find('li').eq(2).text().substr(6, 5)
      	        var screen = button.closest('.Ticketing_list').find('li').eq(0).text().substr(5)
      	        var count = button.closest('.Ticketing_list').find('li').eq(3).text().substr(6, 1)
-     	        var url = '/Movie/Reserve_Cancel.movie'
-     	        	
-     	        cancel(id, date, time, screen, count, url)
+     	        	        	
+     	        $.ajax({
+     	       		type: "post",
+     	       		url: "reserve_Cancel.movie",
+     	       		data: { startdate: date, starttime: time, screencode: screen, seatcount: count, id: id },
+     	       		success: function (data) {
+     	       			location.reload()
+     	       		}
+     	       	});
      	     })
      	} 
     })        

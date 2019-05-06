@@ -9,7 +9,7 @@
                         <div class="user_img">
                             <img src="../assets/user/img/user.svg" alt="사용자 이미지">
                         </div>
-                        <h2 class="tit_24" id="id">${member.id}</h2>
+                        <h2 class="tit_24" id="member_id">${member.id}</h2>
                         <p class="txt_14">이메일 : <span>${member.email}</span></p>
                         <!-- 포인트 버튼 -->
                         <div class="point_wrap">
@@ -50,7 +50,7 @@
                                         </ul>
                                     </div>
                                     <div class="mypage_movie_img">
-                                        <img src="../assets/user/img/moviePics/" alt="${reserveList.moviename}">
+                                        <img src="../assets/user/img/moviePics/${reserveList.newname}" alt="${reserveList.moviename}">
                                     </div>
                                     <p class="reservation_cancellation">
                                     	<button class="txt_12 clickHand reserveCancel">예매 취소</button>
@@ -64,4 +64,4 @@
                 </div> 
             </div>
         </div>       
-
+		<footer class="footer_bg"></footer>

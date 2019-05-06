@@ -10,6 +10,7 @@ public class JoinVO {
 	private int showingcode;
 	private String cinemaname;
 	private String moviename;
+	private String newname;
 	private String screencode;
 	private String startdate;
 	private String starttime;

@@ -20,8 +20,7 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/admin/admin_Notice", method = RequestMethod.GET)
 	public String adminNotice(Model model) {
-		
-		
+				
 		List<NoticeVO> noticeList = noticeDAO.noticeList();
 		int total = noticeList.size();
 		System.out.println("공지사항수=>" + total);
@@ -39,12 +38,6 @@ public class NoticeController {
 	
 	@RequestMapping(value = "/admin/admin_NoticeRegisterPro", method = RequestMethod.POST)
 	public String adminNoticeRegisterPro(Model model, NoticeVO noticeVO) {
-		
-		if (noticeVO.getContent().trim().equals("")) {
-			model.addAttribute("search", "exist");
-
-			return "admin_Register";
-		}
 		
 		noticeVO.setContent(noticeVO.getContent().trim());
 		
@@ -69,6 +62,30 @@ public class NoticeController {
 		noticeDAO.noticeDelete(noticecode);
 		
 		return "redirect:admin_Notice.movie"; 
+	}
+	
+	@RequestMapping(value = "/user/notice", method = RequestMethod.GET)
+	public String notice(Model model) {
+		
+		List<NoticeVO> noticeList = noticeDAO.noticeList();
+		
+		model.addAttribute("noticeList", noticeList);
+		
+		return "notice"; 
+	}
+	
+	@RequestMapping(value = "/user/notice_Detail", method = RequestMethod.GET)
+	public String noticeDetail(Model model, @RequestParam int noticecode) {
+		
+		NoticeVO notice = noticeDAO.getNotice(noticecode);
+		NoticeVO pre = noticeDAO.preNotice(noticecode);
+		NoticeVO next = noticeDAO.nextNotice(noticecode);
+		
+		model.addAttribute("notice", notice);
+		model.addAttribute("pre", pre);
+		model.addAttribute("next", next);
+				
+		return "notice_Detail"; 
 	}
 
 }

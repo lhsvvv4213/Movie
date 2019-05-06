@@ -41,7 +41,7 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "/admin/admin_EventDelete", method = RequestMethod.GET)
-	public String adminEventDelete(Model model, @RequestParam String eventcode) {
+	public String adminEventDelete(Model model, @RequestParam int eventcode) {
 		
 		EventVO event = eventDAO.getEvent(eventcode);
 		
@@ -51,7 +51,7 @@ public class EventController {
 	}
 	
 	@RequestMapping(value = "/admin/admin_EventDeletePro", method = RequestMethod.GET)
-	public String admin_EventDeletePro(Model model, @RequestParam String eventcode) {
+	public String admin_EventDeletePro(Model model, @RequestParam int eventcode) {
 		
 		EventVO event = eventDAO.getEvent(eventcode);
 		
@@ -92,6 +92,37 @@ public class EventController {
 	
 		}				
 		return "redirect:admin_EventRegister.movie";
+	}
+	
+	@RequestMapping(value = "/user/event", method = RequestMethod.GET)
+	public String event(Model model) {
+		
+		List<EventVO> eventEight = eventDAO.eventEight();
+		
+		model.addAttribute("eventEight", eventEight);
+		model.addAttribute("count", eventEight.size());
+		
+		return "event"; 
+	}
+	
+	@RequestMapping(value = "/user/event_Detail", method = RequestMethod.GET)
+	public String eventDetail(Model model, @RequestParam int eventcode) {
+		
+		EventVO event = eventDAO.getEvent(eventcode);
+		
+		model.addAttribute("event", event);	
+		
+		return "event_Detail";
+	}
+	
+	@RequestMapping(value = "/user/event_More", method = RequestMethod.GET)
+	public String eventMore(Model model, @RequestParam int count) {
+		
+		List<EventVO> eventMore = eventDAO.eventMore(count);
+		
+		model.addAttribute("eventMore", eventMore);	
+		
+		return "event_More";
 	}
 
 }

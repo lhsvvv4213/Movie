@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pot.dao.CinemaDAO;
 import com.pot.dao.MovieDAO;
@@ -69,14 +70,9 @@ public class TimeController {
 		return "screenList";
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/admin/admin_TimeRegisterPro", method = RequestMethod.POST)
 	public String adminTimeRegisterPro(Model model, ShowingVO showingVO, TimeVO timeVO) {
-		
-		if (showingVO.getCinemaname().equals("") || showingVO.getMoviename().equals("") || timeVO.getScreencode().equals("")) {
-			model.addAttribute("search", "exist");
-
-			return "admin_Register";
-		}
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("cinemaname", showingVO.getCinemaname());
@@ -100,12 +96,9 @@ public class TimeController {
 			} else {
 				timeDAO.timeInsert(map);
 			}		
-		} else {
-			model.addAttribute("search", search);
-
-			return "admin_Register";
-		}	
-		return "redirect:admin_TimeRegister.movie";
+		} 
+		
+		return search;
 	}
 	
 }

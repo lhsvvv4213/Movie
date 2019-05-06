@@ -6,21 +6,43 @@
 <tiles-definitions>
 
 	<!-- 메인페이지 -->
-	<definition name="mainPage" template="/WEB-INF/views/user/template/layout.jsp">		
+	<definition name="mainPage" template="/WEB-INF/views/user/template/main.jsp">		
 		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
 		<put-attribute name="header" value="/WEB-INF/views/user/template/header.jsp" />
 		<put-attribute name="body" value="/WEB-INF/views/user/mainPage.jsp" />
 		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
-		<put-attribute name="script" value="" />
 	</definition>
 	
 	<!-- 공지사항 -->
+	<definition name="notice" template="/WEB-INF/views/user/template/layout.jsp">
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="header" value="/WEB-INF/views/user/template/header.jsp" />
+		<put-attribute name="body" value="/WEB-INF/views/user/notice.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+		<put-attribute name="script" value="/WEB-INF/views/user/script/notice_Script.jsp" />
+	</definition>
+	
+	<!-- 상세 공지사항 -->
+	<definition name="notice_Detail" extends="notice">
+		<put-attribute name="body" value="/WEB-INF/views/user/notice_Detail.jsp" />
+		<put-attribute name="script" value="" />
+	</definition>
 	
 	<!-- 이벤트 -->
+	<definition name="event" extends="notice">
+		<put-attribute name="body" value="/WEB-INF/views/user/event.jsp" />
+		<put-attribute name="script" value="" />
+	</definition>
+	
+	<!-- 이벤트 상세 -->
+	<definition name="event_Detail" template="/WEB-INF/views/user/event_Detail.jsp" />
+	
+	<!-- 이벤트 더보기 -->
+	<definition name="event_More" template="/WEB-INF/views/user/event_More.jsp" />
 	
 	<!-- 마이페이지 -->
-	<definition name="mypage" extends="mainPage">
-		<put-attribute name="body" value="/WEB-INF/views/user/mypage.jsp" />
+	<definition name="myPage" extends="notice">
+		<put-attribute name="body" value="/WEB-INF/views/user/myPage.jsp" />
 		<put-attribute name="script" value="/WEB-INF/views/user/script/mypage_Script.jsp" />
 	</definition>
 	
@@ -31,19 +53,49 @@
 	</definition>
 	
 	<!-- 회원가입 -->
-	<definition name="register" extends="agreement" />
-	
-	<!-- 아이디 체크 -->
-	<definition name="idCheck" template="/WEB-INF/views/user/idCheck.jsp" />
+	<definition name="register" template="/WEB-INF/views/user/register.jsp">
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>
 	
 	<!-- 회원가입 성공 -->
-	<definition name="register_Success" extends="agreement" />				
+	<definition name="register_Success" template="/WEB-INF/views/user/register_Success.jsp">
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>
 	
-	<!-- 로그인 -->
-	<definition name="login" template="/WEB-INF/views/user/login.jsp" />
+	<!-- 아이디 찾기 -->
+	<definition name="id_Lost" template="/WEB-INF/views/user/id_Lost.jsp">	
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>
+	
+	<!-- 비밀번호 찾기 -->
+	<definition name="password_Lost" template="/WEB-INF/views/user/password_Lost.jsp">	
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>			
 	
 	<!-- 영화 상세정보 -->
-	<definition name="movie_Detail" template="/WEB-INF/views/user/movie_Detail.jsp" />		
+	<definition name="movie_Detail" template="/WEB-INF/views/user/movie_Detail.jsp" />
+	
+	<!-- 리뷰 리스트 -->
+	<definition name="reviewList" template="/WEB-INF/views/user/reviewList.jsp" />
+	
+	<!-- 예매할 영화관 -->
+	<definition name="reserve_Cinema" template="/WEB-INF/views/user/reserve_Cinema.jsp" />
+	
+	<!-- 예매할 영화 시간 -->		
+	<definition name="reserve_Time" template="/WEB-INF/views/user/reserve_Time.jsp" />
+	
+	<!-- 1관 -->		
+	<definition name="screen1" template="/WEB-INF/views/user/screen1.jsp" />
+	
+	<!-- 예매 성공 -->
+	<definition name="reserve_Success" template="/WEB-INF/views/user/reserve_Success.jsp">
+		<put-attribute name="css" value="/WEB-INF/views/user/script/css.jsp" />
+		<put-attribute name="js" value="/WEB-INF/views/user/script/js.jsp" />
+	</definition>		
 	
 	<!-- 관리자메인 -->
 	<definition name="admin_Member" template="/WEB-INF/views/admin/template/layout.jsp">		
@@ -129,7 +181,5 @@
 	<definition name="admin_NoticeRegister" extends="admin_CinemaRegister">
 		<put-attribute name="body" value="/WEB-INF/views/admin/admin_NoticeRegister.jsp" />
 	</definition>
-	
-	<definition name="admin_Register" template="/WEB-INF/views/admin/admin_Register.jsp" />
 
 </tiles-definitions>

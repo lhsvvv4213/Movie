@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-<tiles:insertAttribute name="js" />
+	<tiles:insertAttribute name="js" />
 </body>
 </html>
 </c:if>

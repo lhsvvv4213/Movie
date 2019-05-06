@@ -26,4 +26,12 @@ public interface NoticeDAO {
 	@Insert("insert into NOTICE select ifnull(max(noticecode)+1,1),#{subject},#{content},now(),#{id} from NOTICE")
 	public void noticeInsert(NoticeVO noticeVO);
 	
+	// 선택한 공지사항 앞 검색
+	@Select("select * from NOTICE where noticecode=#{noticecode}-1")
+	public NoticeVO preNotice(int noticecode);
+	
+	// 선택한 공지사항 뒤 검색
+	@Select("select * from NOTICE where noticecode=#{noticecode}+1")
+	public NoticeVO nextNotice(int noticecode);
+	
 }

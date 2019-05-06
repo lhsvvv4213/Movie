@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pot.dao.MemberDAO;
 import com.pot.dto.MemberVO;
@@ -31,22 +32,13 @@ public class RegisterController {
 		return "register";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/user/idCheck", method = RequestMethod.POST)
 	public String idCheck(Model model, @RequestParam String id) {
 		
 		String memberId = memberDAO.idCheck(id);	
-		int idCheck; // 중복확인 
 		
-		if(memberId == null) {
-			idCheck = 0; // 회원이 존재하지 않음
-
-		} else {
-			idCheck = 1; // 회원존재
-		}
-		
-		model.addAttribute("idCheck", idCheck);
-		
-		return "idCheck";
+		return memberId;
 	}
 	
 	@RequestMapping(value = "/user/register_Success", method = RequestMethod.POST)

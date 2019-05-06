@@ -16,14 +16,22 @@ public interface EventDAO {
 	
 	// 한개의 이벤트 정보
 	@Select("select * from EVENT where eventcode=#{eventcode}")
-	public EventVO getEvent(String eventcode);
+	public EventVO getEvent(int eventcode);
 	
 	// 이벤트 삭제
 	@Delete("delete from EVENT where eventcode=#{eventcode}")
-	public void eventDelete(String eventcode);
+	public void eventDelete(int eventcode);
 	
 	// 이벤트 등록
 	@Insert("insert into EVENT select ifnull(max(eventcode)+1,1),#{subject},#{startdate},#{enddate},#{oldname},#{newname},#{url},#{d_oldname},#{d_newname},#{d_url},#{id} from EVENT")
 	public int eventInsert(EventVO eventVO);
+	
+	// 이벤트 8개 
+	@Select("select * from EVENT order by eventcode desc limit 8")
+	public List<EventVO> eventEight();
+	
+	// 더보기
+	@Select("select * from EVENT order by eventcode desc limit #{count},8")
+	public List<EventVO> eventMore(int count);
 	
 }

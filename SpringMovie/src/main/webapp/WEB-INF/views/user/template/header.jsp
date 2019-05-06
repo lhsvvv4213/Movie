@@ -21,7 +21,7 @@
 							<a class="tit_16 clickHand" onclick="login()">My Page</a>
 						</li>
 						<li class="large_contents">
-							<a class="tit_16" href="#login">Login</a>
+							<a class="tit_16 clickHand">Login</a>
 						</li>
 					</c:if>
 					<c:if test="${sessionScope.id != null}">
@@ -39,7 +39,7 @@
 		</div>
 		<!-- 로그인 작업 시작 -->
 		<div class="form_wrapper">
-			<form method="post" action="login.movie" class="table_middle fld">
+			<form class="table_middle fld">
 				<div class="table_cell_middle input_wh">
 					<h3 class="tit_28">Login</h3>
 					<div class="input_inner">
@@ -59,7 +59,7 @@
 						<p>
 							<a class="txt_14" href="password_Lost.movie">비밀번호 찾기</a>
 						</p>
-						<input type="submit" class="login_btn" value="Login">
+						<input type="button" class="login_btn" value="Login">
 					</div>
 				</div>
 			</form>

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pot.dao.MovieDAO;
 import com.pot.dto.JoinVO;
@@ -61,14 +62,9 @@ public class MovieController {
 		return "admin_MovieRegister";
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/admin/admin_MovieRegisterPro", method = RequestMethod.POST)
 	public String adminCinemaRegisterPro(Model model, HttpServletRequest request, MovieVO movieVO) throws Exception {
-		
-		if (movieVO.getGrade().equals("") || movieVO.getContent().trim().equals("")) {
-			model.addAttribute("search", "exist");
-
-			return "admin_Register";
-		}
 		
 		String oldName = movieVO.getUpload().getOriginalFilename();
 		String newName = FileUtil.rename(oldName);
@@ -83,14 +79,10 @@ public class MovieController {
 		
 		if (search == null) {
 			movieDAO.movieInsert(movieVO);
-			movieVO.getUpload().transferTo(new File(url));
-			
-			return "redirect:admin_MovieRegister.movie";
-		} else {
-			model.addAttribute("search", search);
-			
-			return "admin_Register";
-		}			
+			movieVO.getUpload().transferTo(new File(url));			
+		} 	
+		
+		return search;
 	}
 	
 }

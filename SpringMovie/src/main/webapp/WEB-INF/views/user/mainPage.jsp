@@ -33,14 +33,16 @@
 							<div class="title" title="${movieList.moviename}" style="display: none;">
 								<h3 class="movieName">${movieList.moviename}</h3>
 								<p class="text" style="display: none;">${movieList.content}</p>
-							</div></li>
+							</div>
+							<div style="font-size: 23px" align="center">${movieList.moviename}</div>
+						</li>
 					</c:forEach>
 				</ul>
 			</div>
 			<!-- 영화 매인 리스트 디자인 끝-->
 			<!-- 팝업 디자인 시작-->
 			<div class="pop_up_bg" style="display: none;">
-				<form method="post" action="/Movie/Reserve_Success.movie" id="reserve" class="form_reserve">
+				<form method="post" action="reserve_Success.movie" id="reserve" class="form_reserve">
 					<div class="pop_up_post">
 						<div class="pop_up_post_inner clearfix">
 							<div class="pop_up_right">
@@ -52,7 +54,7 @@
 									</select>
 									<div class="d_day_wrapper">
 										<h2 class="txt_18">DATE</h2>
-										<input type="text" name="time_startdate" id="datepicker" size="30">
+										<input type="text" name="startdate" id="datepicker" size="30">
 									</div>
 									<div class="time_wrapper">
 										<h2 class="txt_18">TIME</h2>
@@ -77,7 +79,7 @@
 							<div class="total_wrap">
 								<div class="total_inner">
 									<p id="" class="txt_14">
-										<a class="cancel" href="/Movie/Main.movie"> cancel </a>
+										<a class="cancel" href="mainPage.movie"> cancel </a>
 									</p>
 									<p id="ticketTotalPrice" class="txt_14">
 										<a class="total_btn total"> total price<span>0</span>won</a>
@@ -86,14 +88,14 @@
 							</div>
 						</div>
 					</div>
-					<input type="hidden" name="movie_name" id="movie_name"> 
-					<input type="hidden" name="reserve_seatcount" id="reserve_seatcount">
-					<input type="hidden" name="reserve_price" id="reserve_price">
-					<input type="hidden" name="time_starttime" id="time_starttime">
-					<input type="hidden" name="time_screencode" id="time_screencode">
+					<input type="hidden" name="movie" id="movie_name"> 
+					<input type="hidden" name="seatcount" id="reserve_seatcount">
+					<input type="hidden" name="price" id="reserve_price">
+					<input type="hidden" name="starttime" id="time_starttime">
+					<input type="hidden" name="screencode" id="time_screencode">
 					<input type="hidden" name="adult" id="adult1"> 
 					<input type="hidden" name="child" id="child"> 
-					<input type="hidden" name="reserve_id" value="${sessionScope.id}">
+					<input type="hidden" name="id" value="${sessionScope.id}">
 				</form>
 			</div>
 			<!-- 팝업 디자인 끝-->
@@ -121,7 +123,7 @@
 										</c:if>
 									</div>
 									<div class="textarea">
-										<textarea title="댓글쓰기" name="comment" id="review_content" cols="30" rows="10" maxlength="100">
+										<textarea title="댓글쓰기" id="review_content" cols="30" rows="10" maxlength="100">
 										
 										</textarea>
 									</div>
