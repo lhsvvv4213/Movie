@@ -14,8 +14,8 @@ public class MailTest {
 	public MailTest(String pw, String email) {
 
 		String host = "smtp.naver.com";
-		final String user = "lhsvvv4213";
-		final String password = "Alclssja1!!";
+		final String user = "";
+		final String password = "";
 
 		String to = email;
 

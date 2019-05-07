@@ -21,10 +21,11 @@
                     <div class="derail_pop_up_contents">
                         <div class="derail_pop_up_infort">
                             <div class="derail_pop_up_inner">
-                                <p class="txt_14">개발기간 : <span>${movie.opendate}</span></p>
+                                <p class="txt_14">개봉일 : <span>${movie.opendate}</span></p>
+                                <p class="txt_14">개발기간 : <span>${movie.genre}</span></p>
                                 <p class="txt_14">개발인원 : <span>${movie.director}</span></p>
                                 <p class="txt_14">개발분야 : <span>${movie.actor}</span></p>
-                                <p class="txt_14">개발언어 : <span>${movie.genre} / ${movie.runningtime}</span></p>                              
+                                <p class="txt_14">개발언어 : <span>${movie.runningtime}</span></p>                              
                             </div>
                             <div class="rating_btn_right txt_18">
                                 <a href="#0"><i class="icon-heart"></i>보고싶어</a>

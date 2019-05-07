@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<meta name="viewport" content="width=device-width Initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes" />
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- <meta name="viewport" content="width=device-width Initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" /> -->
 <!--DESIGN CSS-->
 <link rel="stylesheet" href="../assets/user/css/Pluggins/jquery-ui.css">
 <link rel="stylesheet" href="../assets/user/css/Pluggins/DataTables-1.10.18/css/jquery.dataTables.css">
